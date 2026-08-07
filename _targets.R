@@ -20,6 +20,11 @@ tar_source("2-code/1-processing.R")
 
 # Replace the target list below with your own:
 list(
+  
+  tar_target(moisture_data, import_gsheet("https://docs.google.com/spreadsheets/d/1b40OLAx637_Pc_ERC1aHQtWN_mTpnbfqm-3Em5YV1l4/")),
+  tar_target(moisture_processed, process_moisture(moisture_data)),
+  tar_target(loi_processed, process_loi(moisture_data)),
+  
   tar_target(pH_data, import_gsheet("https://docs.google.com/spreadsheets/d/1rztTEWvlArXmYQUXv5M4DrfSHT8d0G0A9Jm97VBuIgg/")),
   tar_target(pH_processed, process_ph(pH_data)),
   
