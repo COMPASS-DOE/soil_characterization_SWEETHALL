@@ -15,6 +15,7 @@ tar_option_set(
 
 # Run the R scripts in the R/ folder with your custom functions:
 tar_source("2-code/0-packages.R")
+tar_source("2-code/0b-initial_processing.R")
 tar_source("2-code/1-processing.R")
 # tar_source("other_functions.R") # Source other scripts as needed.
 
@@ -28,6 +29,8 @@ list(
   tar_target(pH_data, import_gsheet("https://docs.google.com/spreadsheets/d/1rztTEWvlArXmYQUXv5M4DrfSHT8d0G0A9Jm97VBuIgg/")),
   tar_target(pH_processed, process_ph(pH_data)),
   
+  tar_target(weoc_data, import_weoc_data(FILEPATH = "1-data/raw/wsoc", PATTERN = "Summary_Raw")),
+ # tar_target(weoc_processed, process_weoc(weoc_data, analysis_key, moisture_processed, subsampling)),
   
   
   NULL
