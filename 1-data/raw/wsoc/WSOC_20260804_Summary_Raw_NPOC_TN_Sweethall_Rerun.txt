@@ -1,0 +1,172 @@
+[Header]												
+System	salt-9mL											
+S/W Version	1											
+User	User											
+Date/Time	8/6/26 16:17											
+												
+[System]												
+Instrument Options	TOC/ASI/IC Unit/TN/Sparge Kit/											
+												
+[Data]												
+Type	Anal.	Sample Name	Sample ID	Result(TOC)	Result(TC)	Result(IC)	Result(POC)	Result(NPOC)	Result(TN)	Unit	Vial	Date / Time
+Unknown	NPOC/TN	CondBlank1						-3.95	1.647	mg/L	1	7/24/26 12:55
+Unknown	NPOC/TN	CondBlank2						-4	1.647	mg/L	2	7/24/26 13:09
+Unknown	NPOC/TN	CondBlank3						-3.993	1.647	mg/L	3	7/24/26 13:24
+Standard	NPOC	CC-NPOC						200		mg/L	"4, 5, 6, 7, 8, 9, 10"	7/24/26 14:49
+Standard	TN	CC-TN							50	mg/L	"11, 12, 13, 14, 15, 16"	7/24/26 16:06
+Unknown	NPOC/TN	Blank1						0.09835	0.07756	mg/L	17	7/24/26 16:27
+Unknown	NPOC/TN	CKSTD1_10ppm						10.22	11.23	mg/L	18	7/24/26 16:41
+Unknown	NPOC/TN	1	skip					26.26	1.463	mg/L	1	7/24/26 18:48
+Unknown	NPOC/TN	2	skip					5.519	0.2502	mg/L	2	7/24/26 19:04
+Unknown	NPOC/TN	3	skip					6.003	0.7216	mg/L	3	7/24/26 19:19
+Unknown	NPOC/TN	4	skip					21.61	0.4309	mg/L	4	7/24/26 19:35
+Unknown	NPOC/TN	5	skip					3.571	0.2636	mg/L	5	7/24/26 19:52
+Unknown	NPOC/TN	6	skip					2.486	0.136	mg/L	6	7/24/26 20:02
+Unknown	NPOC/TN	7	skip					26.4	0.2647	mg/L	7	7/24/26 20:20
+Unknown	NPOC/TN	8	skip					41.63	1.63	mg/L	8	7/24/26 20:32
+Unknown	NPOC/TN	9	skip					58.65	1.462	mg/L	9	7/24/26 20:44
+Unknown	NPOC/TN	10	skip					9.565	0.2022	mg/L	10	7/24/26 20:55
+Unknown	NPOC/TN	Blank2						0.1166	0.01778	mg/L	11	7/24/26 21:05
+Unknown	NPOC/TN	CKSTD2_10ppm						10.1	11.24	mg/L	12	7/24/26 21:18
+Unknown	NPOC/TN	11	skip					20.7	0.8564	mg/L	13	7/24/26 21:35
+Unknown	NPOC/TN	12	skip					3.766	0.2504	mg/L	14	7/24/26 21:46
+Unknown	NPOC/TN	13	skip					17.79	0.6393	mg/L	15	7/24/26 22:04
+Unknown	NPOC/TN	14	skip					28.55	1.503	mg/L	16	7/24/26 22:21
+Unknown	NPOC/TN	15	skip					3.353	0.187	mg/L	17	7/24/26 22:38
+Unknown	NPOC/TN	16	skip					3.861	0.389	mg/L	18	7/24/26 22:57
+Unknown	NPOC/TN	17	skip					2.365	0.1384	mg/L	19	7/24/26 23:10
+Unknown	NPOC/TN	18	skip					11.96	0.4606	mg/L	20	7/24/26 23:28
+Unknown	NPOC/TN	19	skip					5.082	0.9264	mg/L	21	7/24/26 23:44
+Unknown	NPOC/TN	20	skip					10.92	0.3481	mg/L	22	7/24/26 23:55
+Unknown	NPOC/TN	Blank3						0.1587	0.0165	mg/L	23	7/25/26 0:07
+Unknown	NPOC/TN	CKSTD3_10ppm						10.1	11.2	mg/L	24	7/25/26 0:20
+Unknown	NPOC/TN	21	skip					6.303	0.4048	mg/L	25	7/25/26 0:37
+Unknown	NPOC/TN	22	skip					13.96	0.7772	mg/L	26	7/25/26 0:48
+Unknown	NPOC/TN	23	skip					5.153	0.245	mg/L	27	7/25/26 1:02
+Unknown	NPOC/TN	24	skip					5.509	0.8367	mg/L	28	7/25/26 1:13
+Unknown	NPOC/TN	25	skip					3.815	0.7203	mg/L	29	7/25/26 1:32
+Unknown	NPOC/TN	26	skip					1.756	0.02212	mg/L	30	7/25/26 1:45
+Unknown	NPOC/TN	27	skip					4.792	0.1472	mg/L	31	7/25/26 1:58
+Unknown	NPOC/TN	28	skip					3.51	0.2187	mg/L	32	7/25/26 2:09
+Unknown	NPOC/TN	29	skip					35.22	0.3883	mg/L	33	7/25/26 2:26
+Unknown	NPOC/TN	30	skip					3.237	0.3131	mg/L	34	7/25/26 2:43
+Unknown	NPOC/TN	Blank4						0.1236	0.02539	mg/L	35	7/25/26 2:57
+Unknown	NPOC/TN	CKSTD4_10ppm						10.16	11.2	mg/L	36	7/25/26 3:10
+Unknown	NPOC/TN	31	skip					3.203	0.2075	mg/L	37	7/25/26 3:24
+Unknown	NPOC/TN	32	skip					8.624	0.362	mg/L	38	7/25/26 3:40
+Unknown	NPOC/TN	33	skip					8.588	0.3036	mg/L	39	7/25/26 3:57
+Unknown	NPOC/TN	34	skip					5.841	0.2174	mg/L	40	7/25/26 4:13
+Unknown	NPOC/TN	35	skip					12.73	0.6444	mg/L	41	7/25/26 4:30
+Unknown	NPOC/TN	36	skip					23.68	0.8883	mg/L	42	7/25/26 4:48
+Unknown	NPOC/TN	37	skip					6.751	0.4815	mg/L	43	7/25/26 5:05
+Unknown	NPOC/TN	38	skip					4.774	1.023	mg/L	44	7/25/26 5:22
+Unknown	NPOC/TN	39	skip					9.791	0.8	mg/L	45	7/25/26 5:39
+Unknown	NPOC/TN	40	skip					96.63	2.41	mg/L	46	7/25/26 5:52
+Unknown	NPOC/TN	Blank5						0.2863	0.05247	mg/L	47	7/25/26 6:05
+Unknown	NPOC/TN	CKSTD5_10ppm						10.04	10.99	mg/L	48	7/25/26 6:18
+Unknown	NPOC/TN	41	skip					7.376	0.4199	mg/L	49	7/25/26 6:34
+Unknown	NPOC/TN	42	skip					11.15	0.4898	mg/L	50	7/25/26 6:52
+Unknown	NPOC/TN	43	skip					32.14	1.414	mg/L	51	7/25/26 7:04
+Unknown	NPOC/TN	DS1_R1						81.01	3.235	mg/L	52	7/25/26 7:16
+Unknown	NPOC/TN	DS1_R2						21.33	0.9909	mg/L	53	7/25/26 7:33
+Unknown	NPOC/TN	DS1_R3						53.27	2.026	mg/L	54	7/25/26 7:46
+Unknown	NPOC/TN	DS1_R4						59.72	1.971	mg/L	55	7/25/26 8:01
+Unknown	NPOC/TN	DS1_R5						43.73	5.469	mg/L	56	7/25/26 8:14
+Unknown	NPOC/TN	DS1_R6						43.11	0.964	mg/L	57	7/25/26 8:31
+Unknown	NPOC/TN	DS1_R7						51.17	1.641	mg/L	58	7/25/26 8:44
+Unknown	NPOC/TN	Blank6						0.2568	0.02158	mg/L	59	7/25/26 8:58
+Unknown	NPOC/TN	CKSTD6_10ppm						10.16	11.05	mg/L	60	7/25/26 9:11
+Unknown	NPOC/TN	DS1_R8						48.04	2.21	mg/L	61	7/25/26 9:24
+Unknown	NPOC/TN	DS1_R9						93.4	2.512	mg/L	62	7/25/26 9:37
+Unknown	NPOC/TN	DS1_R10						94.98	9.763	mg/L	63	7/25/26 9:50
+Unknown	NPOC/TN	DS1_R11						43.46	1.216	mg/L	64	7/25/26 10:02
+Unknown	NPOC/TN	DS1_R12						17.98	1.389	mg/L	65	7/25/26 10:13
+Unknown	NPOC/TN	Blank7						0.07207	0.01819	mg/L	66	7/25/26 10:29
+Unknown	NPOC/TN	CKSTD7_10ppm						10.18	11.06	mg/L	67	7/25/26 10:42
+Unknown	NPOC/TN	CondBlank1						-3.673	0.01421	mg/L	1	7/27/26 21:07
+Unknown	NPOC/TN	CondBlank2						-3.789	0.01421	mg/L	2	7/27/26 21:22
+Unknown	NPOC/TN	CondBlank3						-3.908	0.01421	mg/L	3	7/27/26 21:36
+Standard	NPOC	CC-NPOC						200		mg/L	"4, 5, 6, 7, 8, 9, 10"	7/27/26 23:01
+Standard	TN	CC-TN							50	mg/L	"11, 12, 13, 14, 15, 16"	7/28/26 0:18
+Unknown	NPOC/TN	Blank1						0.8799	-0.04155	mg/L	17	7/28/26 0:34
+Unknown	NPOC/TN	CKSTD1_10ppm						10.31	9.765	mg/L	18	7/28/26 0:47
+Unknown	NPOC/TN	method blank						1.112	-0.07461	mg/L	19	7/28/26 7:02
+Unknown	NPOC/TN	264	skip					37.26	0.8627	mg/L	20	7/28/26 7:15
+Unknown	NPOC/TN	289	skip					18.42	0.6725	mg/L	21	7/28/26 7:26
+Unknown	NPOC/TN	280	skip					2.839	0.08174	mg/L	22	7/28/26 7:39
+Unknown	NPOC/TN	269-2	skip					17.83	0.6323	mg/L	23	7/28/26 7:58
+Unknown	NPOC/TN	269-1	skip					18.29	0.5899	mg/L	24	7/28/26 8:15
+Unknown	NPOC/TN	263	skip					30.51	0.9547	mg/L	25	7/28/26 8:27
+Unknown	NPOC/TN	255-2	skip					8.74	0.2659	mg/L	26	7/28/26 8:41
+Unknown	NPOC/TN	255-1	skip					12.23	0.454	mg/L	27	7/28/26 8:58
+Unknown	NPOC/TN	288	skip					10.44	0.4699	mg/L	28	7/28/26 9:09
+Unknown	NPOC/TN	Blank2						0.9256	-0.1058	mg/L	29	7/28/26 9:19
+Unknown	NPOC/TN	CKSTD2_10ppm						10.26	9.885	mg/L	30	7/28/26 9:32
+Unknown	NPOC/TN	287	skip					5.137	0.1682	mg/L	31	7/28/26 9:52
+Unknown	NPOC/TN	solution blank						0.8957	-0.1017	mg/L	32	7/28/26 10:04
+Unknown	NPOC/TN	Blank3						0.8671	-0.1015	mg/L	33	7/28/26 10:16
+Unknown	NPOC/TN	CKSTD3_10ppm						10.36	9.907	mg/L	34	7/28/26 10:29
+Unknown	NPOC/TN	Blank4						0.8408	0.01772	mg/L	1	7/30/26 19:14
+Unknown	NPOC/TN	CKSTD4_10ppm						10.28	10.05	mg/L	2	7/30/26 19:27
+Unknown	NPOC/TN	293	CMPS_Jul26_293					6.874	0.2847	mg/L	3	7/30/26 19:46
+Unknown	NPOC/TN	294	CMPS_Jul26_294					4.995	0.2032	mg/L	4	7/30/26 19:58
+Unknown	NPOC/TN	303	CMPS_Jul26_303					1.678	-0.03578	mg/L	5	7/30/26 20:13
+Unknown	NPOC/TN	269	CMPS_Jul26_269					22.56	1.266	mg/L	6	7/30/26 20:26
+Unknown	NPOC/TN	270	CMPS_Jul26_270					10.48	0.4765	mg/L	7	7/30/26 20:43
+Unknown	NPOC/TN	288	CMPS_Jul26_288					13.92	0.7485	mg/L	8	7/30/26 20:55
+Unknown	NPOC/TN	289	CMPS_Jul26_289					28.83	1.47	mg/L	9	7/30/26 21:07
+Unknown	NPOC/TN	290	CMPS_Jul26_290					7.423	0.1938	mg/L	10	7/30/26 21:18
+Unknown	NPOC/TN	Blank5						0.8338	-0.09739	mg/L	11	7/30/26 21:33
+Unknown	NPOC/TN	CKSTD5_10ppm						10.29	10.07	mg/L	12	7/30/26 21:49
+Unknown	NPOC/TN	291	CMPS_Jul26_291					29.35	1.086	mg/L	13	7/30/26 22:06
+Unknown	NPOC/TN	292	CMPS_Jul26_292					14.43	0.6408	mg/L	14	7/30/26 22:24
+Unknown	NPOC/TN	263	CMPS_Jul26_263					33.43	1.214	mg/L	15	7/30/26 22:36
+Unknown	NPOC/TN	264	CMPS_Jul26_264					37.01	1.102	mg/L	16	7/30/26 22:48
+Unknown	NPOC/TN	265	CMPS_Jul26_265					14.89	0.4524	mg/L	17	7/30/26 23:05
+Unknown	NPOC/TN	268	CMPS_Jul26_268					28.97	1.006	mg/L	18	7/30/26 23:17
+Unknown	NPOC/TN	266	CMPS_Jul26_266					48.61	1.532	mg/L	19	7/30/26 23:29
+Unknown	NPOC/TN	267	CMPS_Jul26_267					29.14	1.199	mg/L	20	7/30/26 23:42
+Unknown	NPOC/TN	Blank6						1.077	-0.1061	mg/L	21	7/30/26 23:55
+Unknown	NPOC/TN	CKSTD6_10ppm						10.26	10.11	mg/L	22	7/31/26 0:08
+Unknown	NPOC/TN	CondBlank1						0.7276	-0.2338	mg/L	34	8/5/26 4:38
+Unknown	NPOC/TN	CondBlank2						0.6628	-0.2338	mg/L	35	8/5/26 4:52
+Unknown	NPOC/TN	CondBlank3						0.7091	-0.2338	mg/L	36	8/5/26 5:07
+Standard	NPOC	CC-NPOC						200		mg/L	"37, 38, 39, 40, 41, 42, 43"	8/5/26 6:44
+Standard	TN	CC-TN							50	mg/L	"44, 45, 46, 47, 48, 49"	8/5/26 8:03
+Unknown	NPOC/TN	Blank1						0.07277	0.07471	mg/L	50	8/5/26 8:18
+Unknown	NPOC/TN	CKSTD1_10ppm						9.685	9.916	mg/L	51	8/5/26 8:31
+Unknown	NPOC/TN	1	COMPASS_Jul26_276					3.784	0.4039	mg/L	1	8/5/26 12:35
+Unknown	NPOC/TN	2	COMPASS_Jul26_256					12.62	0.3881	mg/L	2	8/5/26 12:53
+Unknown	NPOC/TN	3	COMPASS_Jul26_304					21.39	0.6107	mg/L	3	8/5/26 13:12
+Unknown	NPOC/TN	4	COMPASS_Jul26_283					2.825	-0.02762	mg/L	4	8/5/26 13:28
+Unknown	NPOC/TN	5	COMPASS_Jul26_261					17.51	0.4079	mg/L	5	8/5/26 13:40
+Unknown	NPOC/TN	6	COMPASS_Jul26_281					4.58	-0.09319	mg/L	6	8/5/26 13:59
+Unknown	NPOC/TN	7	COMPASS_Jul26_275					4.845	0.1679	mg/L	7	8/5/26 14:19
+Unknown	NPOC/TN	8	COMPASS_Jul26_262					8.896	0.4347	mg/L	8	8/5/26 14:33
+Unknown	NPOC/TN	9	COMPASS_Jul26_286					3.216	0.00571	mg/L	9	8/5/26 14:50
+Unknown	NPOC/TN	10	COMPASS_Jul26_255					19.97	1.002	mg/L	10	8/5/26 15:10
+Unknown	NPOC/TN	Blank2						0.6661	-0.2301	mg/L	11	8/5/26 15:24
+Unknown	NPOC/TN	CKSTD2_10ppm						9.963	10.02	mg/L	12	8/5/26 15:41
+Unknown	NPOC/TN	11	COMPASS_Jul26_279					2.909	-0.00883	mg/L	13	8/5/26 15:58
+Unknown	NPOC/TN	12	COMPASS_Jul26_274					4.398	0.1471	mg/L	14	8/5/26 16:16
+Unknown	NPOC/TN	13	COMPASS_Jul26_272					4.111	0.04749	mg/L	15	8/5/26 16:35
+Unknown	NPOC/TN	14	COMPASS_Jul26_282					3.589	0.03585	mg/L	16	8/5/26 16:51
+Unknown	NPOC/TN	15	COMPASS_Jul26_271					4.572	0.6649	mg/L	17	8/5/26 17:09
+Unknown	NPOC/TN	16	COMPASS_Jul26_277					4.923	0.102	mg/L	18	8/5/26 17:26
+Unknown	NPOC/TN	17	COMPASS_Jul26_280					2.903	-0.02946	mg/L	19	8/5/26 17:43
+Unknown	NPOC/TN	18	COMPASS_Jul26_260					13.86	0.2901	mg/L	20	8/5/26 18:09
+Unknown	NPOC/TN	19	COMPASS_Jul26_287					4.908	0.04177	mg/L	21	8/5/26 18:26
+Unknown	NPOC/TN	20	COMPASS_Jul26_258					11.36	0.4903	mg/L	22	8/5/26 18:43
+Unknown	NPOC/TN	Blank3						0.5439	-0.2303	mg/L	23	8/5/26 18:55
+Unknown	NPOC/TN	CKSTD3_10ppm						9.925	10.07	mg/L	24	8/5/26 19:10
+Unknown	NPOC/TN	21	COMPASS_Jul26_285					2.759	0.00166	mg/L	25	8/5/26 19:27
+Unknown	NPOC/TN	22	COMPASS_Jul26_273					4.287	0.7164	mg/L	26	8/5/26 19:44
+Unknown	NPOC/TN	23	COMPASS_Jul26_284					2.394	-0.07246	mg/L	27	8/5/26 19:57
+Unknown	NPOC/TN	24	COMPASS_Jul26_257					22.7	0.7795	mg/L	28	8/5/26 20:09
+Unknown	NPOC/TN	25	COMPASS_Jul26_278					4.984	0.1647	mg/L	29	8/5/26 20:26
+Unknown	NPOC/TN	26	COMPASS_Jul26_259					14.35	0.4802	mg/L	30	8/5/26 20:38
+Unknown	NPOC/TN	DS1_R1						60.03	3.756	mg/L	31	8/5/26 22:34
+Unknown	NPOC/TN	DS1_R2						42.19	2.422	mg/L	32	8/5/26 22:52
+Unknown	NPOC/TN	DS1_R3						43.26	1.881	mg/L	33	8/5/26 23:05
+Unknown	NPOC/TN	Blank4						0.6129	-0.2295	mg/L	34	8/5/26 23:19
+Unknown	NPOC/TN	CKSTD4_10ppm						10.04	10.02	mg/L	35	8/5/26 23:36
