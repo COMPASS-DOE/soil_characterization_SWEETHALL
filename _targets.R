@@ -22,6 +22,12 @@ tar_source("2-code/1-processing.R")
 # Replace the target list below with your own:
 list(
   
+  # sample metadata
+  tar_target(sample_key_data, "1-data/sample_key.csv", format = "file"),
+  tar_target(sample_key, read.csv(sample_key_data)),
+  tar_target(subsampling_data, "1-data/subsampling_weights.csv", format = "file"),
+  tar_target(subsampling, read.csv(subsampling_data)),
+  
   tar_target(moisture_data, import_gsheet("https://docs.google.com/spreadsheets/d/1b40OLAx637_Pc_ERC1aHQtWN_mTpnbfqm-3Em5YV1l4/")),
   tar_target(moisture_processed, process_moisture(moisture_data)),
   tar_target(loi_processed, process_loi(moisture_data)),
