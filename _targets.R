@@ -42,6 +42,12 @@ list(
   tar_target(data_combined_all_horizons, combine_data(moisture_processed, pH_processed, loi_processed, weoc_processed, sample_key)),
   tar_target(data_combined_wide, make_data_wide(data_combined_all_horizons, sample_key)),
   
+  # EXPORT
+  tar_target(export, {
+    write.csv(data_combined_all_horizons, "1-data/processed/chemistry_combined_all_horizons.csv", row.names = FALSE)
+    write.csv(data_combined_wide, "1-data/processed/chemistry_combined_wide.csv", row.names = FALSE)
+  }, format = "file"),
+  
 # tar_quarto(
 #   report,
 #   path = "3-reports/Untitled.qmd",
