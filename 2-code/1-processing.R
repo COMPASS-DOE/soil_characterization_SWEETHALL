@@ -13,7 +13,7 @@ import_gsheet = function(dat){
 
 reorder_horizon = function(dat){
   dat %>% 
-    mutate(horizon = factor(horizon, levels = c("O", "A", "B")))
+    mutate(horizon = factor(horizon, levels = c("O", "A", "A2", "E", "B")))
 }
 
 reorder_depth = function(dat){
