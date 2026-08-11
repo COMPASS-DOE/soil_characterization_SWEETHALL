@@ -39,10 +39,10 @@ process_moisture = function(moisture_data){
     filter(!is.na(sample_label)) %>% 
     # calculate GWC
     # ((wet-dry)/dry) * 100
-    mutate(gwc_percent = 100 * (wt_crucible_MOIST_SOIL_g - wt_crucible_OVEN_DRY_SOIL_g)/(wt_crucible_OVEN_DRY_SOIL_g - wt_crucible_g),
-           gwc_percent = round(gwc_percent, 2)) %>% 
-    filter(!is.na(gwc_percent)) %>% 
-    dplyr::select(sample_label, gwc_percent) %>% 
+    mutate(GWC_percent = 100 * (wt_crucible_MOIST_SOIL_g - wt_crucible_OVEN_DRY_SOIL_g)/(wt_crucible_OVEN_DRY_SOIL_g - wt_crucible_g),
+           GWC_percent = round(GWC_percent, 2)) %>% 
+    filter(!is.na(GWC_percent)) %>% 
+    dplyr::select(sample_label, GWC_percent) %>% 
     mutate(analysis = "GWC")
 }
 process_loi = function(moisture_data){
@@ -61,6 +61,7 @@ process_loi = function(moisture_data){
            loi_percent = case_when(loi_percent < 0 ~ 0, .default = loi_percent)) %>% 
     filter(!is.na(loi_percent)) %>% 
     dplyr::select(sample_label, loi_percent) %>% 
+    rename(SOM_percent = loi_percent) %>% 
     mutate(analysis = "LOI")
   
 }
@@ -117,7 +118,7 @@ process_weoc = function(weoc_data, moisture_processed, subsampling){
     # join gwc and subsampling weights to normalize data to soil weight
     left_join(moisture_processed) %>% 
     rename(fm_g = WSOC_g) %>% 
-    mutate(od_g = fm_g/((gwc_percent/100)+1),
+    mutate(od_g = fm_g/((GWC_percent/100)+1),
            soilwater_g = fm_g - od_g,
            weoc_ug_g = npoc_corr_mgL * ((40 + soilwater_g)/od_g),
            weoc_ug_g = round(weoc_ug_g, 2)) %>% 
@@ -125,8 +126,9 @@ process_weoc = function(weoc_data, moisture_processed, subsampling){
   
   npoc_samples = 
     npoc_processed %>% 
-    filter(grepl("COMPASS", sample_label))%>% 
-    mutate(analysis = "WEOC")
+    filter(grepl("COMPASS", sample_label)) %>% 
+    mutate(analysis = "WEOC") %>% 
+    rename(WEOC_ugg = weoc_ug_g)
   
   npoc_samples
 }
