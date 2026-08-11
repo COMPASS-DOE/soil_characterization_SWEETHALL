@@ -1,0 +1,78 @@
+---
+title: "Untitled"
+format: markdown
+execute:
+  echo: false      # Hide code by default
+  warning: false   # Hide warnings
+  error: true      # Do not stop on errors
+  cache: false     # Turn caching off/on
+  freeze: auto     # Re-render only when source changes
+---
+
+```{r}
+library(tidyverse)
+library(here)
+
+#source(here("run.R"))
+```
+
+
+```{r, eval=T}
+
+targets::tar_load_everything()
+
+
+pH_processed %>% 
+  ggplot(aes(x = pH, y = spConductance_uscm))+
+  geom_point()
+  
+
+```
+
+
+```{r, eval=F}
+pH_processed %>% 
+filter(!is.na(transect)) %>% 
+  mutate(transect = factor(transect, 
+                           levels = c("upland", "swamp", "transition", "wetland")),
+         horizon = factor(horizon, 
+                          levels = c("O", "A", "A2", "E", "B"))) %>% 
+  ggplot(aes(x = transect, y = pH, color = horizon))+
+  geom_jitter(size = 4, width = 0.1)+
+  facet_wrap(~depth)
+
+
+pH %>% 
+  filter(!is.na(transect)) %>% 
+  mutate(transect = factor(transect, 
+                           levels = c("upland", "swamp", "transition", "wetland")),
+         horizon = factor(horizon, 
+                          levels = c("O", "A", "A2", "E", "B"))) %>% 
+  ggplot(aes(x = transect, y = `Cond (us/cm)`, color = horizon))+
+  geom_jitter(size = 4, width = 0.1)+
+  facet_wrap(~depth)
+
+
+
+gwc %>% 
+  filter(!is.na(transect)) %>% 
+  mutate(transect = factor(transect, 
+                           levels = c("upland", "swamp", "transition", "wetland")),
+         horizon = factor(horizon, 
+                          levels = c("O", "A", "A2", "E", "B"))) %>% 
+  ggplot(aes(x = transect, y = gwc, color = horizon))+
+  geom_jitter(size = 4, width = 0.1)+
+  facet_wrap(~depth)
+
+gwc %>% 
+  filter(!is.na(transect)) %>% 
+  mutate(transect = factor(transect, 
+                           levels = c("upland", "swamp", "transition", "wetland")),
+         horizon = factor(horizon, 
+                          levels = c("O", "A", "A2", "E", "B"))) %>% 
+  ggplot(aes(x = transect, y = loi, color = horizon))+
+  geom_jitter(size = 4, width = 0.1)+
+  facet_wrap(~depth)
+
+```
+

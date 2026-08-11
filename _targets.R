@@ -9,13 +9,13 @@ library(targets)
 
 # Set target options:
 tar_option_set(
-  packages = c("tibble", "tidyverse"), # packages that your targets need to run
+  packages = c("tibble", "tidyverse", "tarchetypes"), # packages that your targets need to run
   format = "rds" # default storage format
 )
 
 # Run the R scripts in the R/ folder with your custom functions:
 tar_source("2-code/0-packages.R")
-tar_source("2-code/0b-initial_processing.R")
+#tar_source("2-code/0b-initial_processing.R")
 tar_source("2-code/1-processing.R")
 # tar_source("other_functions.R") # Source other scripts as needed.
 
@@ -32,7 +32,11 @@ list(
   tar_target(weoc_data, import_weoc_data(FILEPATH = "1-data/raw/wsoc", PATTERN = "Summary_Raw")),
  # tar_target(weoc_processed, process_weoc(weoc_data, analysis_key, moisture_processed, subsampling)),
   
-  
+# tar_quarto(
+#   report,
+#   path = "3-reports/Untitled.qmd",
+#   quiet = FALSE),
+   
   NULL
   
 )

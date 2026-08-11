@@ -6,6 +6,8 @@ library(whistledown)
 library(lubridate)
 library(googlesheets4)
 library(multcomp)
+library(tarchetypes)
+library(quarto)
 
 theme_kp <- function() {  # this for all the elements common across plots
   theme_bw() %+replace%
