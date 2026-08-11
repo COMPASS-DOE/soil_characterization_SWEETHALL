@@ -36,7 +36,7 @@ list(
   tar_target(pH_processed, process_ph(pH_data)),
   
   tar_target(weoc_data, import_weoc_data(FILEPATH = "1-data/raw/wsoc", PATTERN = "Summary_Raw")),
- # tar_target(weoc_processed, process_weoc(weoc_data, analysis_key, moisture_processed, subsampling)),
+  tar_target(weoc_processed, process_weoc(weoc_data, moisture_processed, subsampling)),
   
 # tar_quarto(
 #   report,

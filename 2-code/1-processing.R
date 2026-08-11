@@ -77,39 +77,37 @@ import_weoc_data = function(FILEPATH, PATTERN){
   
   
 }
-process_weoc = function(weoc_data, analysis_key, moisture_processed, subsampling){
+process_weoc = function(weoc_data, moisture_processed, subsampling){
   
   npoc_processed = 
     weoc_data %>% 
     # remove skipped samples
     filter(!`Sample ID` %in% "skip") %>% 
     # keep only relevant columns and rename them
-    dplyr::select(`Sample Name`, `Result(NPOC)`) %>% 
-    rename(sample_label = `Sample Name`,
+    dplyr::select(`Sample ID`, `Result(NPOC)`) %>% 
+    rename(sample_label = `Sample ID`,
            npoc_mgL = `Result(NPOC)`) %>% 
     # keep only sample rows 
-    filter(grepl("COMPASS_", analysis_ID)) %>% 
-    # join the analysis key to get the sample_label
-#    left_join(analysis_key %>% dplyr::select(analysis_ID, sample_label, NPOC_dilution)) %>%
+    filter(grepl("COMPASS|CMPS", sample_label)) %>% 
     # do blank/dilution correction
-    mutate(blank_mgL = case_when(sample_label == "blank-filter" ~ npoc_mgL)) %>% 
-    fill(blank_mgL, .direction = c("up")) %>% 
-    mutate(NPOC_dilution = as.numeric(NPOC_dilution),
-           npoc_corr_mgL = (npoc_mgL) * NPOC_dilution) %>% 
+ #   mutate(blank_mgL = case_when(sample_label == "blank-filter" ~ npoc_mgL)) %>% 
+ #    fill(blank_mgL, .direction = c("up")) %>% 
+    left_join(subsampling %>% dplyr::select(sample_label, WSOC_g, WSOC_mL, WSOC_dilution) %>% drop_na()) %>% 
+    mutate(WSOC_dilution = as.numeric(WSOC_dilution),
+           npoc_corr_mgL = (npoc_mgL) * WSOC_dilution) %>% 
     # join gwc and subsampling weights to normalize data to soil weight
     left_join(moisture_processed) %>% 
-    left_join(subsampling %>% dplyr::select(notes, sample_label, WSOC_g) %>% drop_na()) %>% 
     rename(fm_g = WSOC_g) %>% 
-    mutate(od_g = fm_g/((gwc_perc/100)+1),
+    mutate(od_g = fm_g/((gwc_percent/100)+1),
            soilwater_g = fm_g - od_g,
-           npoc_ug_g = npoc_corr_mgL * ((40 + soilwater_g)/od_g),
-           npoc_ug_g = round(npoc_ug_g, 2)) %>% 
-    dplyr::select(sample_label, npoc_corr_mgL, npoc_ug_g, notes)
+           weoc_ug_g = npoc_corr_mgL * ((40 + soilwater_g)/od_g),
+           weoc_ug_g = round(weoc_ug_g, 2)) %>% 
+    dplyr::select(sample_label, npoc_corr_mgL, weoc_ug_g)
   
   npoc_samples = 
     npoc_processed %>% 
     filter(grepl("COMPASS", sample_label))%>% 
-    mutate(analysis = "NPOC")
+    mutate(analysis = "WEOC")
   
   npoc_samples
 }
