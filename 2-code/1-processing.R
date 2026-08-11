@@ -7,6 +7,25 @@ import_gsheet = function(dat){
   googlesheets4::read_sheet(dat) %>% mutate_all(as.character)
 }
 
+
+# refactor/reorder functions ----------------------------------------------
+## functions to set the order of factors
+
+reorder_horizon = function(dat){
+  dat %>% 
+    mutate(horizon = factor(horizon, levels = c("O", "A", "B")))
+}
+
+reorder_depth = function(dat){
+  dat %>% 
+    mutate(depth = factor(depth, levels = c("surface", "subsurface")))
+}
+
+reorder_transect = function(dat){
+  dat %>% 
+    mutate(transect = factor(transect, levels = c("upland", "swamp", "transition", "wetland")))
+}
+
 #
 # PROCESS GWC, LOI --------------------------------------------------------
 
@@ -112,3 +131,44 @@ process_weoc = function(weoc_data, moisture_processed, subsampling){
   npoc_samples
 }
 
+
+
+#
+
+# COMBINED CHEMISTRY DATA -------------------------------------------------
+
+combine_data = function(moisture_processed, pH_processed, loi_processed, 
+                        weoc_processed, sample_key){
+  
+  df_list = list(moisture_processed, pH_processed, loi_processed, 
+                 weoc_processed)
+  
+  data_combined_all_horizons = 
+    df_list %>% reduce(full_join) %>% 
+    dplyr::select(-ends_with(c("_ppm", "_mgL", "_flag"))) %>% 
+    pivot_longer(-c(sample_label, analysis)) %>% 
+    drop_na() %>% 
+    left_join(sample_key) %>% 
+    reorder_transect() %>% 
+    reorder_horizon() %>% 
+    reorder_depth() %>% 
+    force() 
+  
+  data_combined_all_horizons
+  
+}
+
+make_data_wide = function(data_combined, sample_key){
+  
+  #data_combined_wide = 
+  data_combined %>% 
+    dplyr::select(sample_label, analysis, name, value) %>% 
+    #separate(name, sep = "_", into = "variable", remove = F) %>% 
+    #mutate(name = paste0(variable, " (", analysis, ")")) %>% 
+    dplyr::select(sample_label, name, value) %>% 
+    pivot_wider(names_from = "name") %>% 
+    left_join(sample_key) %>% 
+    dplyr::select(sample_label, region, site, transect, tree_number, depth, horizon, everything()) %>% 
+    force()
+  
+}

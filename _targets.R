@@ -38,6 +38,10 @@ list(
   tar_target(weoc_data, import_weoc_data(FILEPATH = "1-data/raw/wsoc", PATTERN = "Summary_Raw")),
   tar_target(weoc_processed, process_weoc(weoc_data, moisture_processed, subsampling)),
   
+  # COMBINED DATA
+  tar_target(data_combined_all_horizons, combine_data(moisture_processed, pH_processed, loi_processed, weoc_processed, sample_key)),
+  tar_target(data_combined_wide, make_data_wide(data_combined_all_horizons, sample_key)),
+  
 # tar_quarto(
 #   report,
 #   path = "3-reports/Untitled.qmd",
