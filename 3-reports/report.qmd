@@ -76,3 +76,11 @@ gwc %>%
 
 ```
 
+```{r}
+data_combined_all_horizons %>% 
+  ggplot(aes(x = transect, y = value, color = horizon))+
+  geom_jitter(width = 0.1, size = 2)+
+  labs(x = "")+
+  facet_wrap(~name, scale = "free_y")
+```
+

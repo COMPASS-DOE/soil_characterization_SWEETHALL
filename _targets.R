@@ -48,10 +48,10 @@ list(
     write.csv(data_combined_wide, "1-data/processed/chemistry_combined_wide.csv", row.names = FALSE)
   }, format = "file"),
   
-# tar_quarto(
-#   report,
-#   path = "3-reports/Untitled.qmd",
-#   quiet = FALSE),
+ tar_quarto(
+   report,
+   path = "3-reports/report.qmd",
+   quiet = FALSE),
    
   NULL
   
