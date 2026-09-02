@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check duedate and write a comment
-        uses: petrandr/duedate_reminders@latest
+        uses: petrandr/duedate_reminders@main
         with:
           gh_token: ${{ secrets.GH_TOKEN }}
           project_number: 14
