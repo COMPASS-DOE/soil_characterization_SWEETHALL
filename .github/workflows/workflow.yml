@@ -62,7 +62,7 @@ jobs:
               if (!item.content) continue;
 
               const dueField = item.fieldValues.nodes.find(
-                f => f.date === targetDate && f.field.name === 'Target Date'
+                f => f.date === targetDate && f.field.name === 'Target date'
               );
 
               if (dueField) {
