@@ -7,7 +7,7 @@ on:
 
 permissions:
   issues: write
-  organization-projects: read
+  contents: read
 
 jobs:
   remind:
