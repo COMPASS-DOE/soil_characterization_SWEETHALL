@@ -1,40 +1,28 @@
-name: Due Date Reminder
+name: Debug Project Fields
 
-on:
-  schedule:
-    - cron: "0 8 * * *"
-  workflow_dispatch:
+on: workflow_dispatch
 
 jobs:
-  remind:
+  debug:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/github-script@v7
         with:
-          github-token: ${{ secrets.GH_TOKEN }}
+          github-token: ${{ secrets.PROJECT_TOKEN }}
           script: |
-            const tomorrow = new Date();
-            tomorrow.setDate(tomorrow.getDate() + 2);
-            const targetDate = tomorrow.toISOString().split('T')[0];
-            
-            console.log(`🔍 Looking for issues due on: ${targetDate}`);
-
             const query = `
               query {
                 organization(login: "COMPASS-DOE") {
                   projectV2(number: 14) {
-                    items(first: 100) {
+                    items(first: 5) {
                       nodes {
                         content {
                           ... on Issue {
                             number
                             title
-                            repository {
-                              nameWithOwner
-                            }
                           }
                         }
-                        fieldValues(first: 10) {
+                        fieldValues(first: 20) {
                           nodes {
                             ... on ProjectV2ItemFieldDateValue {
                               date
@@ -55,35 +43,8 @@ jobs:
 
             const result = await github.graphql(query);
             const items = result.organization.projectV2.items.nodes;
-
-            console.log(`📋 Found ${items.length} items in project`);
-
+            
             for (const item of items) {
-              if (!item.content) continue;
-
-              const dueField = item.fieldValues.nodes.find(
-                f => f.date === targetDate && f.field.name === 'Target date'
-              );
-
-              if (dueField) {
-                const issue = item.content;
-                const [owner, repo] = issue.repository.nameWithOwner.split('/');
-
-                console.log(`✅ Match: #${issue.number} - ${issue.title}`);
-
-                const comments = await github.rest.issues.listComments({
-                  owner,
-                  repo,
-                  issue_number: issue.number
-                });
-
-                if (!comments.data.some(c => c.body.includes('⏰'))) {
-                  await github.rest.issues.createComment({
-                    owner,
-                    repo,
-                    issue_number: issue.number,
-                    body: `⏰ Reminder: This is due in 2 days (${targetDate})`
-                  });
-                }
-              }
+              console.log(`\n📌 Issue #${item.content.number}: ${item.content.title}`);
+              console.log(`Fields:`, JSON.stringify(item.fieldValues.nodes, null, 2));
             }
