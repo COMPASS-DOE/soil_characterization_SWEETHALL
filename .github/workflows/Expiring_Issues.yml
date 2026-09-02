@@ -16,3 +16,5 @@ jobs:
           notify_for: "expiring_issues"
           duedate_field_name: "Target Date"
           notification_type: "comment"
+          days-before-due: 2  # Adjust this depending on your preference to be notified
+
