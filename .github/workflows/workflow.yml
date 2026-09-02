@@ -1,12 +1,13 @@
 name: Due Date Reminder
 
-on: 
+on:
   schedule:
     - cron: "0 8 * * *"
   workflow_dispatch:
 
 permissions:
   issues: write
+  organization-projects: read
 
 jobs:
   remind:
@@ -17,28 +18,74 @@ jobs:
           script: |
             const tomorrow = new Date();
             tomorrow.setDate(tomorrow.getDate() + 2);
-            const dueDate = tomorrow.toISOString().split('T')[0];
+            const targetDate = tomorrow.toISOString().split('T')[0];
+            
+            console.log(`🔍 Looking for issues due on: ${targetDate}`);
 
-            const issues = await github.rest.issues.listForRepo({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              state: 'open'
-            });
+            const query = `
+              query {
+                organization(login: "COMPASS-DOE") {
+                  projectV2(number: 14) {
+                    items(first: 100) {
+                      nodes {
+                        content {
+                          ... on Issue {
+                            number
+                            title
+                            repository {
+                              nameWithOwner
+                            }
+                          }
+                        }
+                        fieldValues(first: 10) {
+                          nodes {
+                            ... on ProjectV2ItemFieldDateValue {
+                              date
+                              field {
+                                ... on ProjectV2Field {
+                                  name
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            `;
 
-            for (const issue of issues.data) {
-              if (issue.body && issue.body.includes(dueDate)) {
+            const result = await github.graphql(query);
+            const items = result.organization.projectV2.items.nodes;
+
+            console.log(`📋 Found ${items.length} items in project`);
+
+            for (const item of items) {
+              if (!item.content) continue;
+
+              const dueField = item.fieldValues.nodes.find(
+                f => f.date === targetDate && f.field.name === 'Target Date'
+              );
+
+              if (dueField) {
+                const issue = item.content;
+                const [owner, repo] = issue.repository.nameWithOwner.split('/');
+
+                console.log(`✅ Match: #${issue.number} - ${issue.title}`);
+
                 const comments = await github.rest.issues.listComments({
-                  owner: context.repo.owner,
-                  repo: context.repo.repo,
+                  owner,
+                  repo,
                   issue_number: issue.number
                 });
 
                 if (!comments.data.some(c => c.body.includes('⏰'))) {
                   await github.rest.issues.createComment({
-                    owner: context.repo.owner,
-                    repo: context.repo.repo,
+                    owner,
+                    repo,
                     issue_number: issue.number,
-                    body: `⏰ Reminder: This task is due in 2 days (${dueDate})`
+                    body: `⏰ Reminder: This is due in 2 days (${targetDate})`
                   });
                 }
               }
