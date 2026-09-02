@@ -1,8 +1,7 @@
 name: 'Check Issues Due Date'
 
-on:
-  schedule:
-    - cron: '0 1 * * *'
+on: workflow_dispatch
+
 
 jobs:
   reminder:
