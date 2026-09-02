@@ -1,2 +1,19 @@
-name: Issue DueDate Reminder
-uses: petrandr/duedate_reminders@v1.3
+name: 'Check Issues Due Date'
+
+on: workflow_dispatch
+
+
+jobs:
+  reminder:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check duedate and write a comment
+        uses: COMPASS-DOE/soil_characterization_SWEETHALL@main
+        with:
+          gh_token: ${{ secrets.GH_TOKEN }}
+          project_number: 14
+          notify_for: "expiring_issues"
+          duedate_field_name: "Target Date"
+          notification_type: "comment"
+          days-before-due: 2  # Adjust this depending on your preference to be notified
+
