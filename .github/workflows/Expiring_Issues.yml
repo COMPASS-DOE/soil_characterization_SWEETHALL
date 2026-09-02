@@ -1,0 +1,18 @@
+name: 'Check Issues Due Date'
+
+on:
+  schedule:
+    - cron: '0 1 * * *'
+
+jobs:
+  reminder:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check duedate and write a comment
+        uses: petrandr/duedate_reminders@latest
+        with:
+          gh_token: ${{ secrets.GITHUB_TOKEN }}
+          project_number: 14
+          notify_for: "expiring_issues"
+          duedate_field_name: "Target Date"
+          notification_type: "comment"
