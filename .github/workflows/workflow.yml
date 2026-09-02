@@ -14,40 +14,32 @@ jobs:
     steps:
       - uses: actions/github-script@v7
         with:
-          github-token: ${{ secrets.PROJECT_TOKEN }}
           script: |
             const tomorrow = new Date();
             tomorrow.setDate(tomorrow.getDate() + 2);
             const targetDate = tomorrow.toISOString().split('T')[0];
             
-            console.log(`🔍 Looking for issues due on: ${targetDate}`);
-
-            // Get all issues in the repo
             const issues = await github.rest.issues.listForRepo({
-              owner: 'COMPASS-DOE',
-              repo: 'soil_characterization_SWEETHALL',
-              state: 'open',
-              per_page: 100
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open'
             });
 
-            console.log(`📋 Found ${issues.data.length} open issues`);
-
             for (const issue of issues.data) {
-              // Make API request to get the project field values
-              try {
-                const projectItems = await github.request(
-                  'GET /repos/{owner}/{repo}/issues/{issue_number}/timeline',
-                  {
-                    owner: 'COMPASS-DOE',
-                    repo: 'soil_characterization_SWEETHALL',
-                    issue_number: issue.number
-                  }
-                );
+              if (issue.body && issue.body.includes(targetDate)) {
+                const comments = await github.rest.issues.listComments({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: issue.number
+                });
 
-                console.log(`Issue #${issue.number}: ${issue.title}`);
-                // Log response to see what we get
-                console.log(JSON.stringify(projectItems.data, null, 2));
-              } catch (e) {
-                console.log(`Error fetching timeline for #${issue.number}: ${e.message}`);
+                if (!comments.data.some(c => c.body.includes('⏰'))) {
+                  await github.rest.issues.createComment({
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    issue_number: issue.number,
+                    body: `⏰ Reminder: This is due in 2 days (${targetDate})`
+                  });
+                }
               }
             }
