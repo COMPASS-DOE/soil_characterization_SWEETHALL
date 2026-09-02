@@ -23,15 +23,12 @@ jobs:
             console.log(`🔍 Looking for issues due on: ${targetDate}`);
 
             const query = `
-              query($endCursor: String) {
+              query {
                 organization(login: "COMPASS-DOE") {
                   projectV2(number: 14) {
-                    items(first: 100, after: $endCursor) {
-                      pageInfo {
-                        hasNextPage
-                        endCursor
-                      }
+                    items(first: 100) {
                       nodes {
+                        id
                         content {
                           ... on Issue {
                             number
@@ -47,6 +44,7 @@ jobs:
                               date
                               field {
                                 ... on ProjectV2Field {
+                                  id
                                   name
                                 }
                               }
@@ -64,48 +62,48 @@ jobs:
             const items = result.organization.projectV2.items.nodes;
 
             console.log(`📋 Found ${items.length} items in project`);
+            
+            let matchCount = 0;
 
             for (const item of items) {
-              if (!item.content) continue;
-
-              // Log all field values for debugging
-              const dateFields = item.fieldValues.nodes.filter(f => f.date);
-              
-              if (dateFields.length > 0) {
-                console.log(`\n📌 Issue #${item.content.number}: ${item.content.title}`);
-                dateFields.forEach(f => {
-                  console.log(`   ${f.field.name}: ${f.date}`);
-                  
-                  if (f.date === targetDate && f.field.name === 'Target date') {
-                    console.log(`   ✅ MATCH!`);
-                  }
-                });
+              if (!item.content) {
+                console.log(`Skipping item with no content`);
+                continue;
               }
 
-              const dueField = item.fieldValues.nodes.find(
-                f => f.date === targetDate && f.field.name === 'Target date'
-              );
+              console.log(`\n📌 Checking Issue #${item.content.number}: ${item.content.title}`);
+              console.log(`   Field values count: ${item.fieldValues.nodes.length}`);
+              
+              for (const fieldValue of item.fieldValues.nodes) {
+                if (fieldValue.date) {
+                  console.log(`   Found date field: ${fieldValue.field.name} = ${fieldValue.date}`);
+                  
+                  if (fieldValue.date === targetDate && fieldValue.field.name === 'Target date') {
+                    console.log(`   ✅ MATCH FOUND!`);
+                    matchCount++;
+                    
+                    const issue = item.content;
+                    const [owner, repo] = issue.repository.nameWithOwner.split('/');
 
-              if (dueField) {
-                const issue = item.content;
-                const [owner, repo] = issue.repository.nameWithOwner.split('/');
+                    const comments = await github.rest.issues.listComments({
+                      owner,
+                      repo,
+                      issue_number: issue.number
+                    });
 
-                console.log(`\n✅ Creating comment on #${issue.number}`);
-
-                const comments = await github.rest.issues.listComments({
-                  owner,
-                  repo,
-                  issue_number: issue.number
-                });
-
-                if (!comments.data.some(c => c.body.includes('⏰'))) {
-                  await github.rest.issues.createComment({
-                    owner,
-                    repo,
-                    issue_number: issue.number,
-                    body: `⏰ Reminder: This is due in 2 days (${targetDate})`
-                  });
-                  console.log(`Comment created!`);
+                    if (!comments.data.some(c => c.body.includes('⏰'))) {
+                      console.log(`   Creating comment...`);
+                      await github.rest.issues.createComment({
+                        owner,
+                        repo,
+                        issue_number: issue.number,
+                        body: `⏰ Reminder: This is due in 2 days (${targetDate})`
+                      });
+                      console.log(`   ✅ Comment created!`);
+                    }
+                  }
                 }
               }
             }
+            
+            console.log(`\n✅ Total matches found: ${matchCount}`);
