@@ -11,7 +11,7 @@ jobs:
       - name: Check duedate and write a comment
         uses: petrandr/duedate_reminders@latest
         with:
-          gh_token: ${{ secrets.GITHUB_TOKEN }}
+          gh_token: ${{ secrets.GH_TOKEN }}
           project_number: 14
           notify_for: "expiring_issues"
           duedate_field_name: "Target Date"
